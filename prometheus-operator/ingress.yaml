@@ -27,3 +27,18 @@ spec:
         backend:
           serviceName: prometheus-k8s
           servicePort: web
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: alertmanager-main
+  namespace: monitoring
+spec:
+  rules:
+  - host: alertmanager.example.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: alertmanager-main
+          servicePort: web
