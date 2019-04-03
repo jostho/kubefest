@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       # DIFF - upgrade grafana version to the latest
-      - image: grafana/grafana:6.0.2
+      - image: grafana/grafana:6.1.0
         name: grafana
         ports:
         - containerPort: 3000
