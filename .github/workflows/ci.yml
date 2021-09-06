@@ -21,5 +21,5 @@ jobs:
       - name: Run kubeconform
         uses: docker://ghcr.io/yannh/kubeconform:v0.4.10
         with:
-          entrypoint: '/kubeconform'
-          args: "-kubernetes-version 1.21.4 -summary -ignore-missing-schemas */*.yaml"
+          entrypoint: /kubeconform
+          args: "-kubernetes-version 1.21.4 -summary -ignore-missing-schemas $GITHUB_WORKSPACE/*/*.yaml"
