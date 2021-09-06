@@ -1,0 +1,84 @@
+---
+kind: Ingress
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: ghost
+  labels:
+    app: ghost
+spec:
+  rules:
+    - host: ghost.example.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: ghost
+                port:
+                  name: http
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ghost
+  labels:
+    app: ghost
+spec:
+  selector:
+    app: ghost
+  ports:
+    - name: http
+      port: 80
+      targetPort: http
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ghost
+  labels:
+    app: ghost
+spec:
+  selector:
+    matchLabels:
+      app: ghost
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: ghost
+    spec:
+      containers:
+        - name: ghost
+          image: ghcr.io/jostho/ghost:ea4b7eb
+          imagePullPolicy: IfNotPresent
+          resources:
+            requests:
+              memory: "16Mi"
+              cpu: "20m"
+            limits:
+              memory: "32Mi"
+              cpu: "40m"
+          ports:
+            - containerPort: 8000
+              name: http
+          livenessProbe:
+            httpGet:
+              path: /healthcheck
+              port: http
+            initialDelaySeconds: 5
+            periodSeconds: 15
+            timeoutSeconds: 2
+            successThreshold: 1
+            failureThreshold: 2
+          readinessProbe:
+            httpGet:
+              path: /healthcheck
+              port: http
+            initialDelaySeconds: 5
+            periodSeconds: 15
+            timeoutSeconds: 2
+            successThreshold: 1
+            failureThreshold: 2
+      nodeSelector:
+        trestle-role: worker
