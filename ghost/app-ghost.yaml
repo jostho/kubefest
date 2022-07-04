@@ -50,7 +50,7 @@ spec:
     spec:
       containers:
         - name: ghost
-          image: ghcr.io/jostho/ghost:0b99114
+          image: ghcr.io/jostho/ghost:446930a
           imagePullPolicy: IfNotPresent
           resources:
             requests:
