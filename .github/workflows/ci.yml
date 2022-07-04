@@ -22,4 +22,4 @@ jobs:
         uses: docker://ghcr.io/yannh/kubeconform:v0.4.13
         with:
           entrypoint: /kubeconform
-          args: "-kubernetes-version 1.23.6 -summary -ignore-missing-schemas -ignore-filename-pattern .github ."
+          args: "-kubernetes-version 1.23.8 -summary -ignore-missing-schemas -ignore-filename-pattern .github ."
