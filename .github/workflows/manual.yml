@@ -5,8 +5,8 @@ name: Image
 on:
   workflow_dispatch:
     inputs:
-      repo:
-        description: Repository
+      project:
+        description: Project
         required: true
 
 jobs:
@@ -19,11 +19,11 @@ jobs:
         uses: actions/checkout@v2
       - name: Update image in yaml
         run: |
-          REPO="${{ github.event.inputs.name }}"
-          API_URL="https://api.github.com/repos/jostho/$REPO/commits/master"
+          PROJECT="${{ github.event.inputs.project }}"
+          API_URL="https://api.github.com/repos/jostho/$PROJECT/commits/master"
           GIT_SHA=$(curl -sS -H "Accept: application/vnd.github.VERSION.sha" $API_URL)
           SHORT_SHA="${GIT_SHA::7}"
-          for yaml in $REPO/app-$REPO.yaml $REPO-static/app-$REPO-static.yaml
+          for yaml in $PROJECT/app-$PROJECT.yaml $PROJECT-static/app-$PROJECT-static.yaml
           do
             if [ -f $yaml ]
             then
