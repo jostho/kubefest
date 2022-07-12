@@ -1,5 +1,5 @@
 ---
-name: Image
+name: Update yaml
 
 # yamllint disable-line
 on:
@@ -8,16 +8,20 @@ on:
       project:
         description: Project
         required: true
+        type: choice
+        options:
+          - ghost
+          - shelter
 
 jobs:
-  update-image:
+  update-yaml:
 
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Update image in yaml
+      - name: Update image version to latest
         run: |
           PROJECT="${{ github.event.inputs.project }}"
           API_URL="https://api.github.com/repos/jostho/$PROJECT/commits/master"
