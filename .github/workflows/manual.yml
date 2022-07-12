@@ -1,5 +1,5 @@
 ---
-name: Manual
+name: Image
 
 # yamllint disable-line
 on:
@@ -10,7 +10,7 @@ on:
         required: true
 
 jobs:
-  update-image::
+  update-image:
 
     runs-on: ubuntu-latest
 
