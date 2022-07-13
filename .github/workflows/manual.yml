@@ -40,4 +40,4 @@ jobs:
           git config user.email "jostho@users.noreply.github.com"
           git commit -m "Use the latest image"
           git show
-          git push
+          git push origin HEAD
