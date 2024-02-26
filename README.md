@@ -1,6 +1,6 @@
 # Kubefest
 
-![CI](https://github.com/jostho/kubefest/workflows/CI/badge.svg)
+![CI](https://github.com/jostho/kubefest/actions/workflows/ci.yml/badge.svg)
 
 This is a collection of kubernetes manifests
 
