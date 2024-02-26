@@ -124,17 +124,3 @@ spec:
             failureThreshold: 2
       nodeSelector:
         trestle-role: worker
----
-apiVersion: monitoring.coreos.com/v1
-kind: ServiceMonitor
-metadata:
-  labels:
-    app: shelter
-    release: kube-prometheus-stack
-  name: shelter
-spec:
-  endpoints:
-    - port: http
-  selector:
-    matchLabels:
-      app: shelter

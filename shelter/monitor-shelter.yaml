@@ -1,0 +1,31 @@
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    app: shelter
+    release: kube-prometheus-stack
+  name: shelter
+spec:
+  endpoints:
+    - port: http
+  selector:
+    matchLabels:
+      app: shelter
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  labels:
+    app: shelter
+    release: kube-prometheus-stack
+  name: shelter
+spec:
+  groups:
+  - name: shelter
+    rules:
+    - alert: ShelterShortFailures
+      expr: sum(increase(shelter_failures_total{job="shelter",operation="short"}[5m])) > 10
+      for: 5m
+      labels:
+        severity: warning
