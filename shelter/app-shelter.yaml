@@ -82,7 +82,7 @@ spec:
             claimName: shelter
       containers:
         - name: shelter
-          image: ghcr.io/jostho/shelter:310dd63
+          image: ghcr.io/jostho/shelter:e331e56
           imagePullPolicy: IfNotPresent
           resources:
             requests:
