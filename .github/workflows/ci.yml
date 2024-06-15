@@ -19,7 +19,7 @@ jobs:
       - name: Run yamllint
         run: yamllint .
       - name: Run kubeconform
-        uses: docker://ghcr.io/yannh/kubeconform:v0.6.4
+        uses: docker://ghcr.io/yannh/kubeconform:v0.6.6
         with:
           entrypoint: /kubeconform
-          args: "-kubernetes-version 1.29.3 -summary -ignore-missing-schemas -ignore-filename-pattern .github ."
+          args: "-kubernetes-version 1.29.5 -summary -ignore-missing-schemas -ignore-filename-pattern .github ."
