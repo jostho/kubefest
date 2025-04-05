@@ -33,7 +33,7 @@ metadata:
     app: shelter
 spec:
   rules:
-    - host: shelter.trestle.local
+    - host: shelter.trestle.internal
       http:
         paths:
           - path: /
